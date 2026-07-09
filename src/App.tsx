@@ -1,10 +1,13 @@
 import './App.css'
+import Header from './components/Header.tsx'
+import Entry from './components/Entry.tsx'
 
 function App() {
 
   return (
     <div className="App">
-      <h1>Hello, Genshin Edits Portfolio!</h1>
+      <Header />
+      <Entry />
     </div>
   )
 }
