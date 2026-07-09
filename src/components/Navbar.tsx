@@ -1,3 +1,4 @@
+import ka3d3haraLogo from '../assets/images/ka3d3hara-logo.png';
 import { useState } from 'react';
 
 const Navbar = () => {
@@ -15,7 +16,9 @@ const Navbar = () => {
       <div className="nav-container">
         {/* Logo */}
         <div className="nav-logo">
-          <div className="logo-icon">枫</div>
+          <div className="logo-icon">
+            <img src={ka3d3haraLogo} alt="Ka3d3hara Logo" className="logo-icon" />
+          </div>
           <div>
             <h1 className="logo-text">Mary Grace</h1>
             <p className="logo-subtitle">Genshin Edits</p>
