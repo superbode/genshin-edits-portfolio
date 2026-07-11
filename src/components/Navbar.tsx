@@ -1,14 +1,20 @@
 import ka3d3haraLogo from '../assets/images/ka3d3hara-logo.png';
 import { useState } from 'react';
 
-const Navbar = () => {
+export type NavPage = 'home' | 'featured-edits' | 'discord';
+
+interface NavbarProps {
+  activePage: NavPage;
+  onNavigate: (page: NavPage) => void;
+}
+
+const Navbar = ({ activePage, onNavigate }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'About', href: '#about' },
-    { name: 'Discord', href: '#discord' },
+    { name: 'Home', page: 'home' as const },
+    { name: 'Featured Edits', page: 'featured-edits' as const },
+    { name: 'Discord', page: 'discord' as const },
   ];
 
   return (
@@ -28,13 +34,15 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="nav-links">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.name}
-              href={link.href}
-              className="nav-link"
+              className={`nav-link ${activePage === link.page ? 'active' : ''}`}
+              type="button"
+              onClick={() => onNavigate(link.page)}
+              aria-current={activePage === link.page ? 'page' : undefined}
             >
               {link.name}
-            </a>
+            </button>
           ))}
         </div>
 
@@ -51,14 +59,18 @@ const Navbar = () => {
       {isOpen && (
         <div className="mobile-menu">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.name}
-              href={link.href}
-              className="mobile-nav-link"
-              onClick={() => setIsOpen(false)}
+              className={`mobile-nav-link ${activePage === link.page ? 'active' : ''}`}
+              type="button"
+              onClick={() => {
+                onNavigate(link.page);
+                setIsOpen(false);
+              }}
+              aria-current={activePage === link.page ? 'page' : undefined}
             >
               {link.name}
-            </a>
+            </button>
           ))}
         </div>
       )}
