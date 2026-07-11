@@ -8,23 +8,43 @@ type FeaturedEditItem = {
   messageUrl?: string
 }
 
+function formatFeaturedTitle(title: string) {
+  const extensionRemoved = title.replace(/\.[^./\\\s]+$/, '')
+  const separatorsNormalized = extensionRemoved.replace(/[_-]+/g, ' ')
+  const trailingFormatTagRemoved = separatorsNormalized.replace(
+    /\s+(mp4|mov|m4v|avi|mkv|webm|wmv|flv)$/i,
+    ''
+  )
+
+  return trailingFormatTagRemoved.replace(/\s{2,}/g, ' ').trim()
+}
+
 function FeaturedEditCard({ edit }: { edit: FeaturedEditItem }) {
+  const displayTitle = formatFeaturedTitle(edit.title)
+
   return (
     <article className="featured-edit-card">
-      <video
-        className="featured-edit-video"
-        controls
-        preload="metadata"
-        poster={edit.thumbnailUrl}
-      >
-        <source src={edit.videoUrl} />
-        Your browser does not support the video tag.
-      </video>
+      <div className="featured-edit-video-wrap">
+        <video
+          className="featured-edit-video"
+          controls
+          preload="metadata"
+          poster={edit.thumbnailUrl}
+        >
+          <source src={edit.videoUrl} />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
       <div className="featured-edit-meta">
-        <h3>{edit.title}</h3>
+        <h3>{displayTitle || edit.title}</h3>
         {edit.messageUrl ? (
-          <a href={edit.messageUrl} target="_blank" rel="noreferrer">
+          <a
+            className="featured-edit-discord-link"
+            href={edit.messageUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
             View on Discord
           </a>
         ) : null}
@@ -79,11 +99,16 @@ function FeaturedEdits() {
 
   return (
     <section id="featured-edits" className="page-section featured-edits-page">
-      <h2>Featured Edits</h2>
+      <header className="featured-edits-header">
+        <h2>Featured Edits</h2>
+        <p>Recent edits from kazuhas group.</p>
+      </header>
 
-      {loading ? <p>Loading featured edits...</p> : null}
-      {error ? <p>{error}</p> : null}
-      {!loading && !error && edits.length === 0 ? <p>No featured edits found.</p> : null}
+      {loading ? <p className="featured-edits-status">Loading featured edits...</p> : null}
+      {error ? <p className="featured-edits-status featured-edits-status-error">{error}</p> : null}
+      {!loading && !error && edits.length === 0 ? (
+        <p className="featured-edits-status">No featured edits found.</p>
+      ) : null}
 
       {!loading && !error && edits.length > 0 ? (
         <div className="featured-edits-grid">
