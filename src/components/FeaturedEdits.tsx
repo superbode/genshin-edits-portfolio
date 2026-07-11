@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import '../styles/featured-edits.css'
 
 type FeaturedEditItem = {
   id: string

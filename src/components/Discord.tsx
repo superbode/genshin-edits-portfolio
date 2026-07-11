@@ -1,4 +1,5 @@
 import discordGroupIcon from '../assets/images/ka3d3hara-logo.png'
+import '../styles/discord.css'
 
 const discordInviteUrl = 'https://discord.gg/vkete7wdQR'
 

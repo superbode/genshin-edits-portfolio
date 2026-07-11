@@ -1,5 +1,6 @@
 import kazuhaAvatar from '../assets/images/Kaedehara_Kazuha_Avatar.webp';
 import { useState } from 'react';
+import '../styles/navbar.css';
 
 export type NavPage = 'home' | 'featured-edits' | 'discord';
 
