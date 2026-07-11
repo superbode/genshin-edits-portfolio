@@ -1,0 +1,107 @@
+@font-face {
+  font-family: 'GenshinImpact';
+  src: url('../assets/fonts/zh-cn.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --kazuha-red: #9f1239;
+  --kazuha-red-dark: #701a2f;
+  --anemo-teal: #14b8a6;
+  --maple-gold: #fbbf24;
+  --soft-cream: #f5e8d3;
+  --dark-bg: #0f172a;
+  --card-bg: rgba(15, 23, 42, 0.85);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'GenshinImpact', 'Inter', sans-serif;
+  background-color: var(--dark-bg);
+  color: #e2e8f0;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'GenshinImpact', 'Playfair Display', serif;
+  font-weight: 200;
+  letter-spacing: -0.02em;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(20, 184, 166, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+nav {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.page-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 9rem 1.5rem 2rem;
+}
+
+.page-section {
+  min-height: calc(100vh - 11rem);
+}
+
+.text-kazuha-red {
+  color: var(--kazuha-red);
+}
+
+.text-anemo {
+  color: var(--anemo-teal);
+}
+
+.bg-kazuha-red {
+  background-color: var(--kazuha-red);
+}
+
+.btn {
+  background: transparent;
+  border: 2px solid var(--anemo-teal);
+  color: var(--anemo-teal);
+  padding: 12px 32px;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--anemo-teal);
+  color: #0f172a;
+  transform: translateY(-2px);
+}
+
+footer {
+  border-top: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
