@@ -1,4 +1,4 @@
-import ka3d3haraLogo from '../assets/images/ka3d3hara-logo.png';
+import kazuhaAvatar from '../assets/images/Kaedehara_Kazuha_Avatar.webp';
 import { useState } from 'react';
 
 export type NavPage = 'home' | 'featured-edits' | 'discord';
@@ -23,7 +23,7 @@ const Navbar = ({ activePage, onNavigate }: NavbarProps) => {
         {/* Logo */}
         <div className="nav-logo">
           <div className="logo-icon">
-            <img src={ka3d3haraLogo} alt="Ka3d3hara Logo" className="logo-icon" />
+            <img src={kazuhaAvatar} alt="Kaedehara Kazuha Avatar" className="logo-icon" />
           </div>
           <div>
             <h1 className="logo-text">kazuhas group</h1>
