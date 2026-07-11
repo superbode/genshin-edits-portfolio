@@ -115,6 +115,13 @@ nav {
 }
 
 .nav-link {
+  background: transparent;
+  border: none;
+  appearance: none;
+  font: inherit;
+  line-height: inherit;
+  padding: 0;
+  cursor: pointer;
   color: #e2e8f0;
   font-size: 1.3rem;
   font-weight: 400;
@@ -123,6 +130,10 @@ nav {
 }
 
 .nav-link:hover {
+  color: var(--anemo-teal);
+}
+
+.nav-link.active {
   color: var(--anemo-teal);
 }
 
@@ -146,6 +157,14 @@ nav {
 }
 
 .mobile-nav-link {
+  background: transparent;
+  border: none;
+  appearance: none;
+  font: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
   color: #e2e8f0;
   font-size: 1.25rem;
   text-decoration: none;
@@ -154,6 +173,20 @@ nav {
 
 .mobile-nav-link:hover {
   color: var(--anemo-teal);
+}
+
+.mobile-nav-link.active {
+  color: var(--anemo-teal);
+}
+
+.page-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 9rem 1.5rem 2rem;
+}
+
+.page-section {
+  min-height: calc(100vh - 11rem);
 }
 
 .text-kazuha-red { color: var(--kazuha-red); }
