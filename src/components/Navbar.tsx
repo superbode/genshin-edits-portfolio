@@ -8,7 +8,7 @@ const Navbar = () => {
     { name: 'Home', href: '#home' },
     { name: 'Gallery', href: '#gallery' },
     { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Discord', href: '#discord' },
   ];
 
   return (
@@ -20,7 +20,7 @@ const Navbar = () => {
             <img src={ka3d3haraLogo} alt="Ka3d3hara Logo" className="logo-icon" />
           </div>
           <div>
-            <h1 className="logo-text">Mary Grace</h1>
+            <h1 className="logo-text">kazuhas group</h1>
             <p className="logo-subtitle">Genshin Edits</p>
           </div>
         </div>
