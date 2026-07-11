@@ -4,16 +4,16 @@ This is a Vite + React portfolio for sharing featured edits on the kazuhas group
 
 ## Scripts
 
-- `npm run dev` starts the Vite client and the Node server together.
+- `npm run dev` starts the Vite client.
 - `npm run build` type-checks and creates the production client build.
-- `npm run start` runs the backend server, which serves the built app and API.
+- `npm run preview` (or `npm run start`) previews the built frontend.
 - `npm run lint` runs ESLint across the workspace.
 
 ## Discord Featured Edits
 
 The Featured Edits page reads from `/api/discord/featured-edits`.
 
-That endpoint is served by `server/server.mjs`, which:
+That endpoint is served by `api/discord/featured-edits.js`, which:
 
 - Uses `DISCORD_CHANNEL_ID` to fetch messages from a single Discord channel
 - Extracts video attachments from those messages
@@ -27,7 +27,6 @@ Create a local `.env` file and set:
 - `DISCORD_BOT_TOKEN`: Discord bot token
 - `DISCORD_CHANNEL_ID`: Channel ID to read featured edits from
 - `DISCORD_GUILD_ID`: Optional, used for direct Discord links
-- `PORT`: Optional, defaults to `3001`
 
 ### Permissions
 
@@ -54,7 +53,7 @@ npm run dev
 
 ```bash
 npm run build
-npm run start
+npm run preview
 ```
 
-The backend serves both the built frontend and the Discord API endpoint.
+In production, deploy to a platform that runs the `api/` serverless route (for example, Vercel).
