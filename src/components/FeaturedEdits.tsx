@@ -5,6 +5,8 @@ type FeaturedEditItem = {
   id: string
   title: string
   videoUrl: string
+  author?: string
+  discordHandle?: string
   thumbnailUrl?: string
   messageUrl?: string
 }
@@ -22,6 +24,8 @@ function formatFeaturedTitle(title: string) {
 
 function FeaturedEditCard({ edit }: { edit: FeaturedEditItem }) {
   const displayTitle = formatFeaturedTitle(edit.title)
+  const hasAuthor = Boolean(edit.author?.trim())
+  const hasDiscord = Boolean(edit.discordHandle?.trim())
 
   return (
     <article className="featured-edit-card">
@@ -39,6 +43,12 @@ function FeaturedEditCard({ edit }: { edit: FeaturedEditItem }) {
 
       <div className="featured-edit-meta">
         <h3>{displayTitle || edit.title}</h3>
+        {hasAuthor || hasDiscord ? (
+          <p className="featured-edit-inline-meta">
+            {hasAuthor ? <span>Author: {edit.author?.trim()}</span> : null}
+            {hasDiscord ? <span>Discord: {edit.discordHandle?.trim()}</span> : null}
+          </p>
+        ) : null}
         {edit.messageUrl ? (
           <a
             className="featured-edit-discord-link"
