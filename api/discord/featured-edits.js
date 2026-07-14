@@ -47,6 +47,52 @@ function getEnvValue(key) {
   return fallback[key] || '';
 }
 
+function parseMessageContent(content) {
+  const lines = content
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  let videoUrl = '';
+  let title = '';
+  let author = '';
+  let discordHandle = '';
+
+  for (const line of lines) {
+    const titleMatch = line.match(/^title\s*:\s*(.*)$/i);
+    if (titleMatch) {
+      title = titleMatch[1].trim();
+      continue;
+    }
+
+    const authorMatch = line.match(/^author\s*:\s*(.*)$/i);
+    if (authorMatch) {
+      author = authorMatch[1].trim();
+      continue;
+    }
+
+    const discordMatch = line.match(/^discord\s*:\s*(.*)$/i);
+    if (discordMatch) {
+      discordHandle = discordMatch[1].trim();
+      continue;
+    }
+
+    if (!videoUrl) {
+      const urlMatch = line.match(/https?:\/\/\S+/i);
+      if (urlMatch) {
+        videoUrl = urlMatch[0];
+      }
+    }
+  }
+
+  return {
+    videoUrl,
+    title,
+    author,
+    discordHandle,
+  };
+}
+
 export default async function handler(req, res) {
   const token = getEnvValue('DISCORD_BOT_TOKEN');
   const channelId = getEnvValue('DISCORD_CHANNEL_ID');
@@ -80,19 +126,35 @@ export default async function handler(req, res) {
     const messages = await response.json();
 
     const edits = messages.flatMap((message) => {
-      return message.attachments
-        .filter((attachment) => {
-          const contentType = attachment.content_type ?? '';
-          return contentType.startsWith('video/');
-        })
-        .map((attachment) => ({
-          id: `${message.id}-${attachment.id}`,
-          title: message.content?.trim() || attachment.filename,
-          videoUrl: attachment.url,
-          messageUrl: guildId
-            ? `https://discord.com/channels/${guildId}/${channelId}/${message.id}`
-            : '',
-        }));
+      const parsedContent = parseMessageContent(message.content ?? '');
+      const videoAttachments = message.attachments.filter((attachment) => {
+        const contentType = attachment.content_type ?? '';
+        return contentType.startsWith('video/');
+      });
+
+      const messageUrl = guildId
+        ? `https://discord.com/channels/${guildId}/${channelId}/${message.id}`
+        : '';
+
+      if (parsedContent.videoUrl) {
+        return [{
+          id: message.id,
+          title: parsedContent.title || '',
+          author: parsedContent.author || '',
+          discordHandle: parsedContent.discordHandle || '',
+          videoUrl: parsedContent.videoUrl,
+          messageUrl,
+        }];
+      }
+
+      return videoAttachments.map((attachment) => ({
+        id: `${message.id}-${attachment.id}`,
+        title: parsedContent.title || '',
+        author: parsedContent.author || '',
+        discordHandle: parsedContent.discordHandle || '',
+        videoUrl: attachment.url,
+        messageUrl,
+      }));
     });
 
     return res.status(200).json(edits);
