@@ -83,29 +83,29 @@ function Home({ onNavigate }: HomeProps) {
       <section className="home-actions" aria-label="Primary actions">
         <article className="home-action-card">
           <h3>Join The Community</h3>
-          <p>Meet editors, ask questions, and find your place inside the server.</p>
+          <p>Meet fellow editors, ask questions, and find your place inside the server!</p>
           <button type="button" className="home-action-btn" onClick={() => onNavigate('discord')}>
-            Enter Discord
+            Enter Discord ❯
           </button>
         </article>
 
         <article className="home-action-card">
           <h3>Learn How To Apply</h3>
-          <p>Review the server areas, see expectations, and prepare your best work.</p>
+          <p>See how to apply to become a member in our community!</p>
           <button type="button" className="home-action-btn" onClick={() => onNavigate('discord')}>
-            See Application Path
+            See Application Path ❯
           </button>
         </article>
 
         <article className="home-action-card">
           <h3>Watch Featured Edits</h3>
-          <p>Explore standout edits and learn from styles shared by the community.</p>
+          <p>See standout edits from leads and members in the community!</p>
           <button
             type="button"
             className="home-action-btn"
             onClick={() => onNavigate('featured-edits')}
           >
-            View Featured Edits
+            View Featured Edits ❯
           </button>
         </article>
       </section>

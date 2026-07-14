@@ -14,11 +14,11 @@ const communityHighlights = [
   },
   {
     title: 'Members Section',
-    description: 'As a member, connect with members, join exclusive events, and collaborate more closely.',
+    description: 'As a member, connect with members, join exclusive events, and collaborate more closely!',
   },
   {
     title: 'Bots',
-    description: 'Use fun bots, utility commands, and interactive tools throughout the server.',
+    description: 'Use fun bots and interactive tools in the server!',
   },
 ]
 
