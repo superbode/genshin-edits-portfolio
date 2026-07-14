@@ -44,6 +44,20 @@ export default defineConfig({
           const handler = mod.default as (req: unknown, res: unknown) => Promise<unknown>
           await handler(req, attachExpressLikeHelpers(res))
         })
+
+        server.middlewares.use('/api/discord/guild-stats', async (req, res) => {
+          if (req.method !== 'GET') {
+            res.statusCode = 405
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ message: 'Method not allowed' }))
+            return
+          }
+
+          // @ts-expect-error API route is plain JS and intentionally has no TS types.
+          const mod = await import('./api/discord/guild-stats.js')
+          const handler = mod.default as (req: unknown, res: unknown) => Promise<unknown>
+          await handler(req, attachExpressLikeHelpers(res))
+        })
       },
     },
   ],
