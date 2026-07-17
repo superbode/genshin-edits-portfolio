@@ -1,5 +1,6 @@
 import kazuhaAvatar from '../assets/images/Kaedehara_Kazuha_Avatar.webp';
 import { useState } from 'react';
+import NavLink from './NavLink.tsx';
 import '../styles/navbar.css';
 
 export type NavPage = 'home' | 'featured-edits' | 'discord';
@@ -35,15 +36,13 @@ const Navbar = ({ activePage, onNavigate }: NavbarProps) => {
                 {/* Desktop Menu */}
                 <div className="nav-links">
                     {navLinks.map((link) => (
-                        <button
+                        <NavLink
                             key={link.name}
-                            className={`nav-link ${activePage === link.page ? 'active' : ''}`}
-                            type="button"
+                            label={link.name}
+                            isActive={activePage === link.page}
+                            className="nav-link"
                             onClick={() => onNavigate(link.page)}
-                            aria-current={activePage === link.page ? 'page' : undefined}
-                        >
-                            {link.name}
-                        </button>
+                        />
                     ))}
                 </div>
 
@@ -60,18 +59,16 @@ const Navbar = ({ activePage, onNavigate }: NavbarProps) => {
             {isOpen && (
                 <div className="mobile-menu">
                     {navLinks.map((link) => (
-                        <button
+                        <NavLink
                             key={link.name}
-                            className={`mobile-nav-link ${activePage === link.page ? 'active' : ''}`}
-                            type="button"
+                            label={link.name}
+                            isActive={activePage === link.page}
+                            className="mobile-nav-link"
                             onClick={() => {
                                 onNavigate(link.page);
                                 setIsOpen(false);
                             }}
-                            aria-current={activePage === link.page ? 'page' : undefined}
-                        >
-                            {link.name}
-                        </button>
+                        />
                     ))}
                 </div>
             )}
