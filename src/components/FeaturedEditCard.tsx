@@ -7,6 +7,7 @@ export type FeaturedEditItem = {
     thumbnailUrl?: string
     messageUrl?: string
 }
+import '../styles/featured-edit-card.css'
 
 function formatFeaturedTitle(title: string) {
     const extensionRemoved = title.replace(/\.[^./\\\s]+$/, '')
