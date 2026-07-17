@@ -41,6 +41,11 @@
     text-align: center;
 }
 
+.featured-edit-byline {
+    font: inherit;
+    color: inherit;
+}
+
 .featured-edit-inline-meta {
     display: flex;
     align-items: center;
@@ -52,6 +57,17 @@
     font-weight: 300;
     line-height: 1.2;
     color: rgba(226, 232, 240, 0.76);
+}
+
+.featured-edit-social-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.34rem;
+}
+
+.featured-edit-social-item svg {
+    font-size: 0.86rem;
+    color: rgba(226, 232, 240, 0.88);
 }
 
 .featured-edit-discord-link {
