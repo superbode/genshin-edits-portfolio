@@ -4,9 +4,12 @@ export type FeaturedEditItem = {
     videoUrl: string
     author?: string
     discordHandle?: string
+    tiktokHandle?: string
+    instagramHandle?: string
     thumbnailUrl?: string
     messageUrl?: string
 }
+import { FaDiscord, FaInstagram, FaTiktok } from 'react-icons/fa6'
 import '../styles/featured-edit-card.css'
 
 function formatFeaturedTitle(title: string) {
@@ -26,8 +29,11 @@ type FeaturedEditCardProps = {
 
 function FeaturedEditCard({ edit }: FeaturedEditCardProps) {
     const displayTitle = formatFeaturedTitle(edit.title)
-    const hasAuthor = Boolean(edit.author?.trim())
-    const hasDiscord = Boolean(edit.discordHandle?.trim())
+    const author = edit.author?.trim() || ''
+    const discordHandle = edit.discordHandle?.trim() || ''
+    const tiktokHandle = edit.tiktokHandle?.trim() || ''
+    const instagramHandle = edit.instagramHandle?.trim() || ''
+    const hasSocials = Boolean(discordHandle || tiktokHandle || instagramHandle)
 
     return (
         <article className="featured-edit-card">
@@ -44,11 +50,30 @@ function FeaturedEditCard({ edit }: FeaturedEditCardProps) {
             </div>
 
             <div className="featured-edit-meta">
-                <h3>{displayTitle || edit.title}</h3>
-                {hasAuthor || hasDiscord ? (
-                    <p className="featured-edit-inline-meta">
-                        {hasAuthor ? <span>Author: {edit.author?.trim()}</span> : null}
-                        {hasDiscord ? <span>Discord: {edit.discordHandle?.trim()}</span> : null}
+                <h3>
+                    {displayTitle || edit.title}
+                    {author ? <span className="featured-edit-byline"> by {author}</span> : null}
+                </h3>
+                {hasSocials ? (
+                    <p className="featured-edit-inline-meta" aria-label="Social media handles">
+                        {discordHandle ? (
+                            <span className="featured-edit-social-item">
+                                <FaDiscord aria-hidden="true" />
+                                <span>{discordHandle}</span>
+                            </span>
+                        ) : null}
+                        {tiktokHandle ? (
+                            <span className="featured-edit-social-item">
+                                <FaTiktok aria-hidden="true" />
+                                <span>{tiktokHandle}</span>
+                            </span>
+                        ) : null}
+                        {instagramHandle ? (
+                            <span className="featured-edit-social-item">
+                                <FaInstagram aria-hidden="true" />
+                                <span>{instagramHandle}</span>
+                            </span>
+                        ) : null}
                     </p>
                 ) : null}
                 {edit.messageUrl ? (
