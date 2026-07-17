@@ -57,6 +57,8 @@ function parseMessageContent(content) {
     let title = '';
     let author = '';
     let discordHandle = '';
+    let tiktokHandle = '';
+    let instagramHandle = '';
 
     for (const line of lines) {
         const titleMatch = line.match(/^title\s*:\s*(.*)$/i);
@@ -77,6 +79,18 @@ function parseMessageContent(content) {
             continue;
         }
 
+        const tiktokMatch = line.match(/^tiktok\s*:\s*(.*)$/i);
+        if (tiktokMatch) {
+            tiktokHandle = tiktokMatch[1].trim();
+            continue;
+        }
+
+        const instagramMatch = line.match(/^instagram\s*:\s*(.*)$/i);
+        if (instagramMatch) {
+            instagramHandle = instagramMatch[1].trim();
+            continue;
+        }
+
         if (!videoUrl) {
             const urlMatch = line.match(/https?:\/\/\S+/i);
             if (urlMatch) {
@@ -90,6 +104,8 @@ function parseMessageContent(content) {
         title,
         author,
         discordHandle,
+        tiktokHandle,
+        instagramHandle,
     };
 }
 
@@ -142,6 +158,8 @@ export default async function handler(req, res) {
                     title: parsedContent.title || '',
                     author: parsedContent.author || '',
                     discordHandle: parsedContent.discordHandle || '',
+                    tiktokHandle: parsedContent.tiktokHandle || '',
+                    instagramHandle: parsedContent.instagramHandle || '',
                     videoUrl: parsedContent.videoUrl,
                     messageUrl,
                 }];
@@ -152,6 +170,8 @@ export default async function handler(req, res) {
                 title: parsedContent.title || '',
                 author: parsedContent.author || '',
                 discordHandle: parsedContent.discordHandle || '',
+                tiktokHandle: parsedContent.tiktokHandle || '',
+                instagramHandle: parsedContent.instagramHandle || '',
                 videoUrl: attachment.url,
                 messageUrl,
             }));
