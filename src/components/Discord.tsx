@@ -1,26 +1,10 @@
 import discordGroupIcon from '../assets/images/ka3d3hara-logo.png'
+import DiscordHighlightCard from './DiscordHighlightCard.tsx'
+import type { CommunityHighlight } from '../data/communityHighlights.ts'
+import { communityHighlights } from '../data/communityHighlights.ts'
 import '../styles/discord.css'
 
 const discordInviteUrl = 'https://discord.gg/vkete7wdQR'
-
-const communityHighlights = [
-    {
-        title: 'Applications',
-        description: 'Learn how to apply and become a member in kazuhas group!',
-    },
-    {
-        title: 'General Community',
-        description: 'Chat in open channels, share your edits, and get helpful feedback from others!',
-    },
-    {
-        title: 'Members Section',
-        description: 'As a member, connect with members, join exclusive events, and collaborate more closely!',
-    },
-    {
-        title: 'Bots',
-        description: 'Use fun bots and interactive tools in the server!',
-    },
-]
 
 function Discord() {
     return (
@@ -55,11 +39,8 @@ function Discord() {
                     </header>
 
                     <div className="discord-highlights-grid">
-                        {communityHighlights.map((item) => (
-                            <article key={item.title} className="discord-highlight-card">
-                                <h4>{item.title}</h4>
-                                <p>{item.description}</p>
-                            </article>
+                        {communityHighlights.map((item: CommunityHighlight) => (
+                            <DiscordHighlightCard key={item.title} item={item} />
                         ))}
                     </div>
                 </div>
