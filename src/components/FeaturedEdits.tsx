@@ -48,11 +48,6 @@ function FeaturedEdits() {
 
     return (
         <section id="featured-edits" className="page-section featured-edits-page">
-            <header className="featured-edits-header">
-                <h2>Featured Edits</h2>
-                <p>Recent edits from kazuhas group.</p>
-            </header>
-
             {loading ? <p className="featured-edits-status">Loading featured edits...</p> : null}
             {error ? <p className="featured-edits-status featured-edits-status-error">{error}</p> : null}
             {!loading && !error && edits.length === 0 ? (

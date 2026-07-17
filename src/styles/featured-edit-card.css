@@ -18,12 +18,16 @@
 .featured-edit-video-wrap {
     position: relative;
     background: #020617;
+    display: grid;
+    place-items: center;
 }
 
 .featured-edit-video {
     display: block;
     width: 100%;
     height: auto;
+    max-height: clamp(220px, 28vw, 320px);
+    max-width: 100%;
     border-bottom: 1px solid rgba(251, 191, 36, 0.2);
 }
 
