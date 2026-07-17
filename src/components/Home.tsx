@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { NavPage } from './Navbar.tsx'
 import HomeActionCard from './HomeActionCard.tsx'
+import type { HomeActionItem } from '../data/homeActions.ts'
+import { homeActions } from '../data/homeActions.ts'
 import '../styles/home.css'
 
 type HomeProps = {
@@ -82,26 +84,15 @@ function Home({ onNavigate }: HomeProps) {
             </header>
 
             <section className="home-actions" aria-label="Primary actions">
-                <HomeActionCard
-                    title="Join The Community"
-                    description="Meet fellow editors, ask questions, and find your place inside the server!"
-                    buttonText="Enter Discord ❯"
-                    onClick={() => onNavigate('discord')}
-                />
-
-                <HomeActionCard
-                    title="Learn How To Apply"
-                    description="See how to apply to become a member in our community!"
-                    buttonText="See Application Path ❯"
-                    onClick={() => onNavigate('discord')}
-                />
-
-                <HomeActionCard
-                    title="Watch Featured Edits"
-                    description="See standout edits from leads and members in the community!"
-                    buttonText="View Featured Edits ❯"
-                    onClick={() => onNavigate('featured-edits')}
-                />
+                {homeActions.map((action: HomeActionItem) => (
+                    <HomeActionCard
+                        key={action.title}
+                        title={action.title}
+                        description={action.description}
+                        buttonText={action.buttonText}
+                        onClick={() => onNavigate(action.destination)}
+                    />
+                ))}
             </section>
 
         </section>
