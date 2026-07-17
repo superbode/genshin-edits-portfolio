@@ -4,6 +4,7 @@ type HomeActionCardProps = {
     buttonText: string
     onClick: () => void
 }
+import '../styles/home-action-card.css'
 
 function HomeActionCard({ title, description, buttonText, onClick }: HomeActionCardProps) {
     return (

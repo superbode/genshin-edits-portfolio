@@ -1,0 +1,62 @@
+.home-action-card {
+    display: grid;
+    gap: 0.7rem;
+    padding: 1rem;
+    border-radius: 18px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background:
+        linear-gradient(155deg, rgba(159, 18, 57, 0.18), rgba(15, 23, 42, 0.7) 58%, rgba(20, 184, 166, 0.15)),
+        rgba(15, 23, 42, 0.75);
+    box-shadow: 0 18px 26px rgba(2, 6, 23, 0.35);
+    transform: translateY(12px);
+    opacity: 0;
+    animation: reveal-card 0.75s ease forwards;
+}
+
+.home-action-card:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.home-action-card:nth-child(3) {
+    animation-delay: 0.22s;
+}
+
+.home-action-card h3 {
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    color: #f8fafc;
+}
+
+.home-action-card p {
+    color: rgba(226, 232, 240, 0.86);
+}
+
+.home-action-btn {
+    margin-top: 0.35rem;
+    align-self: center;
+    justify-self: center;
+    width: fit-content;
+    border: 1px solid rgba(45, 212, 191, 0.56);
+    border-radius: 999px;
+    padding: 0.75rem 1.35rem;
+    background: rgba(45, 212, 191, 0.94);
+    color: #082f49;
+    font-family: inherit;
+    font-size: clamp(1rem, 2.1vw, 1.5rem);
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.home-action-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(15, 23, 42, 0.86);
+    color: #99f6e4;
+}
+
+@keyframes reveal-card {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
